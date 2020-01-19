@@ -1,0 +1,12 @@
+server:
+  port: 8081
+#-----------------------------------\u6570\u636E\u5E93\u914D\u7F6E----------------------------------------
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/centralsouth?serverTimezone=Asia/Shanghai&characterEncoding=utf8&useUnicode=true&useSSL=false&zeroDateTimeBehavior=CONVERT_TO_NULL
+    data-username: root
+    data-password: 1234
+logging:
+  level: com.liujx.utils : debug
+  config: classpath:log4j2.yml
