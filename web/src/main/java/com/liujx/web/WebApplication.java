@@ -5,7 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
-@ComponentScan(basePackages = "com.liujx.controller")
+@ComponentScan(basePackages = "com.liujx")
 public class WebApplication {
 
     public static void main(String[] args) {
