@@ -10,3 +10,6 @@ spring:
 #-----------------------------------log-----------------------------------------
 logging:
   config: classpath:logback-debug.xml
+
+mybatis-plus:
+  mapper-locations: classpath:/mapper/*Mapper.xml
