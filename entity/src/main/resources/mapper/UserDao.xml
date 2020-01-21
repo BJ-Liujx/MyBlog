@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace=".dao.UserDao">
+
+    <resultMap type=".entity.User" id="UserMap">
+        <result property="userNo" column="user_no" jdbcType="VARCHAR"/>
+        <result property="userName" column="user_name" jdbcType="VARCHAR"/>
+        <result property="passWord" column="pass_word" jdbcType="VARCHAR"/>
+        <result property="creator" column="creator" jdbcType="VARCHAR"/>
+        <result property="creationDate" column="creation_date" jdbcType="TIMESTAMP"/>
+        <result property="modifier" column="modifier" jdbcType="VARCHAR"/>
+        <result property="modifyDate" column="modify_date" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="UserMap">
+        select
+          user_no, user_name, pass_word, creator, creation_date, modifier, modify_date
+        from blog.user
+        where user_no = #{userNo}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="UserMap">
+        select
+          user_no, user_name, pass_word, creator, creation_date, modifier, modify_date
+        from blog.user
+        limit #{offset}, #{limit}
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="UserMap">
+        select
+          user_no, user_name, pass_word, creator, creation_date, modifier, modify_date
+        from blog.user
+        <where>
+            <if test="userNo != null and userNo != ''">
+                and user_no = #{userNo}
+            </if>
+            <if test="userName != null and userName != ''">
+                and user_name = #{userName}
+            </if>
+            <if test="passWord != null and passWord != ''">
+                and pass_word = #{passWord}
+            </if>
+            <if test="creator != null and creator != ''">
+                and creator = #{creator}
+            </if>
+            <if test="creationDate != null">
+                and creation_date = #{creationDate}
+            </if>
+            <if test="modifier != null and modifier != ''">
+                and modifier = #{modifier}
+            </if>
+            <if test="modifyDate != null">
+                and modify_date = #{modifyDate}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="userNo" useGeneratedKeys="true">
+        insert into blog.user(user_name, pass_word, creator, creation_date, modifier, modify_date)
+        values (#{userName}, #{passWord}, #{creator}, #{creationDate}, #{modifier}, #{modifyDate})
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update blog.user
+        <set>
+            <if test="userName != null and userName != ''">
+                user_name = #{userName},
+            </if>
+            <if test="passWord != null and passWord != ''">
+                pass_word = #{passWord},
+            </if>
+            <if test="creator != null and creator != ''">
+                creator = #{creator},
+            </if>
+            <if test="creationDate != null">
+                creation_date = #{creationDate},
+            </if>
+            <if test="modifier != null and modifier != ''">
+                modifier = #{modifier},
+            </if>
+            <if test="modifyDate != null">
+                modify_date = #{modifyDate},
+            </if>
+        </set>
+        where user_no = #{userNo}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from blog.user where user_no = #{userNo}
+    </delete>
+
+</mapper>
