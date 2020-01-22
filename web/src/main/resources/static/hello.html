@@ -3,12 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <title>Hello</title>
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
 </head>
 <body>
-    <form action="/admin/user" method="post">
+    <form action="/user" method="post">
         名稱：<input type="text" name="userName">
         密碼：<input type="text" name="passWord">
         <input type="submit" value="提交">
     </form>
 </body>
+<!-- import Vue before Element -->
+<script src="https://unpkg.com/vue/dist/vue.js"></script>
+<!-- import JavaScript -->
+<script src="https://unpkg.com/element-ui/lib/index.js"></script>
 </html>

@@ -11,11 +11,15 @@ import org.springframework.context.annotation.Configuration;
  * @Auther: 刘金鑫
  * @Date: 2020/1/20 13:41
  * @Version: 1.0
- * @Description: 配置自动添加创建时间修改时间拦截器
+ * @Description: 配置拦截器
  */
 @Configuration
 @MapperScan("con.liujx.mapper")
 public class MybatisPlusConfig {
+    /**
+     * sql拦截器
+     * @return
+     */
     @Bean
     public SqlInterceptor sqlInterceptor() {
         return new SqlInterceptor();
